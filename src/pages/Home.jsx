@@ -7,16 +7,77 @@ import { getAll } from "../requests";
 import GameCard from "../components/GameCard";
 
 function Home() {
+  document.title = "Master Games - Página incial";
+
   const [searchName, setSearchName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [games, setGames] = useState(null);
+  const [sortOption, setSortOption] = useState("A-Z");
+  const [allGames, setAllGames] = useState(null);
   const [errors, setErrors] = useState(null);
+
+  const sortedGames = useMemo(() => {
+    if (allGames) {
+      switch (sortOption) {
+        case "A-Z":
+          return allGames.sort((a, b) => (a.title <= b.title ? -1 : 1));
+        case "Z-A":
+          return allGames.sort((a, b) => (a.title >= b.title ? -1 : 1));
+        case "DATE (desc)":
+          return allGames.sort((a, b) =>
+            a.release_date <= b.release_date ? -1 : 1
+          );
+        case "DATE (asc)":
+          return allGames.sort((a, b) =>
+            a.release_date >= b.release_date ? -1 : 1
+          );
+        default:
+          allGames;
+      }
+    }
+    return [];
+  }, [allGames, sortOption]);
+
+  const matchedGames = useMemo(() => {
+    if (searchName.length >= 3)
+      return sortedGames.filter((game) => {
+        return game.title.toLowerCase().includes(searchName.toLowerCase());
+      });
+    return sortedGames;
+  }, [sortedGames, searchName]);
+
+  const categories = useMemo(() => {
+    const categoryList = [];
+    if (matchedGames) {
+      matchedGames.forEach((game) => {
+        const { genre } = game;
+        if (!categoryList.includes(genre)) {
+          categoryList.push(genre);
+        }
+      });
+    }
+    console.warn(categoryList);
+    return categoryList;
+  }, [matchedGames]);
+
+  const platforms = useMemo(() => {
+    const platformList = [];
+    if (matchedGames) {
+      matchedGames.forEach((game) => {
+        const { platform } = game;
+        if (!platformList.includes(platform)) {
+          platformList.push(platform);
+        }
+      });
+    }
+    console.warn(platformList);
+    return platformList;
+  }, [matchedGames]);
 
   const getGames = async () => {
     await getAll()
       .then((r) => {
-        const games = r.data.splice(0, 20);
-        setGames(games);
+        const games = r.data;
+        setAllGames(games);
       })
       .catch((error) => {
         setErrors(error);
@@ -53,9 +114,9 @@ function Home() {
 
       {isLoading && <h3>Carregando...</h3>}
       {errors && <h3>Deu erro</h3>}
-      {games && (
+      {matchedGames && (
         <GamesContainer>
-          {games.map((game) => {
+          {matchedGames.map((game) => {
             return <GameCard key={game.id} {...game} />;
           })}
         </GamesContainer>
