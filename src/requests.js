@@ -6,24 +6,16 @@ const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
-    "x-rapidapi-key": import.meta.env.API_KEY,
+    "x-rapidapi-key": import.meta.env.VITE_API_KEY,
   },
 });
 
 export const getAll = () => {
-  return api.get("/games", {
-    "sort-by": "alphabetical",
-  });
+  return api.get("/games");
 };
 
 export const getByID = (id) => {
   return api.get("/game", {
     id,
-  });
-};
-
-export const getByFilters = (filters) => {
-  return api.get("/games", {
-    filters,
   });
 };
