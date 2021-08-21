@@ -67,6 +67,7 @@ p, button, input, div, select, li {
 export const Container = styled.div`
   width: 95%;
   padding: 1rem;
+  margin: 0 auto;
 
   @media screen and (max-width: 768px) {
     width: 100%;
