@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useState } from 'react';
 
-export const useLocalStorage = (key, initialValue = "") => {
+export const useLocalStorage = (key, initialValue = '') => {
   const [state, setState] = useState(() => {
     try {
       const storedValue = localStorage.getItem(key);
@@ -17,7 +17,7 @@ export const useLocalStorage = (key, initialValue = "") => {
         setState(value);
         localStorage.setItem(key, JSON.stringify(value));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
     [key]
@@ -26,7 +26,7 @@ export const useLocalStorage = (key, initialValue = "") => {
   return [state, setValue];
 };
 
-export const ThemeContext = React.createContext({
-  theme: "light",
+export const ThemeContext = createContext({
+  theme: 'light',
   setTheme: () => {},
 });
