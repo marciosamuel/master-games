@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Card } from "../styles";
-import FilledStar from "../assets/FilledStar.svg";
-import EmptyStar from "../assets/EmptyStar.svg";
+import React, { useState } from 'react';
+import { Card } from './styles';
+import FilledStar from '../assets/FilledStar.svg';
+import EmptyStar from '../assets/EmptyStar.svg';
 
 function GameCard(props) {
   const { title, platform, genre: category, thumbnail: image } = props;
@@ -16,15 +16,13 @@ function GameCard(props) {
       </p>
       <img src={image} />
       <span className="rating">
-        {[...Array(5)].map((item, index) => {
-          return (
-            <img
-              key={index}
-              src={index < rate ? FilledStar : EmptyStar}
-              onClick={() => setRate(index + 1)}
-            />
-          );
-        })}
+        {[...Array(5)].map((item, index) => (
+          <img
+            key={index}
+            src={index < rate ? FilledStar : EmptyStar}
+            onClick={() => setRate(index + 1)}
+          />
+        ))}
       </span>
       {rate > 0 && (
         <small

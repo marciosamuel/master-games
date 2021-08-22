@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../hooks";
-import { Title, Subtitle, Line, Container } from "../styles";
-import CustomButton from "./CustomButton";
+import React, { useContext } from 'react';
+import { ThemeContext } from '../hooks';
+import { Container, Line, Subtitle, Title } from './styles';
+import CustomButton from './CustomButton';
 
 function ContentContainer(props) {
   const { children } = props;
@@ -11,9 +11,9 @@ function ContentContainer(props) {
     <Container>
       <CustomButton
         handleClick={() => {
-          theme === "dark" ? setTheme("light") : setTheme("dark");
+          setTheme(theme === 'dark' ? 'light' : 'dark');
         }}
-        title={`Tema ${theme === "dark" ? "Escuro" : "Claro"}`}
+        title={`Tema ${theme === 'dark' ? 'Escuro' : 'Claro'}`}
         size="small"
       />
       <Title>Master Games</Title>

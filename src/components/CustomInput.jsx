@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Input } from "../styles";
+import React, { useState } from 'react';
+import { Input } from './styles';
 
 function CustomInput(props) {
   const { handleChange, value, type, label, error, errorMessage } = props;
@@ -13,7 +13,7 @@ function CustomInput(props) {
         onBlur={() => setIsFocus(false)}
         onChange={(event) => handleChange(event.target.value)}
         value={value}
-        placeholder={isFocus ? "" : label}
+        placeholder={isFocus ? '' : label}
         type={type}
       />
       {error && <small>{errorMessage}</small>}

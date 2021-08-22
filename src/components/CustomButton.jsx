@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "../styles";
+import React from 'react';
+import { Button } from './styles';
 
 function CustomButton(props) {
   const { handleClick, title, disabled, size } = props;
