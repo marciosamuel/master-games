@@ -1,23 +1,23 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { BsMoon, BsSun } from 'react-icons/all';
 import { HeaderContainer, Links, ToggleTheme } from './styles';
 import { ThemeContext } from '../hooks';
 
-export default function Header(props) {
-  const { path } = props;
+export default function Header() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { path } = useRouteMatch();
   return (
     <HeaderContainer>
       <h1>Master Games</h1>
       <h1>MG</h1>
       <Links>
-        <Link to="/" className={path === 'home' && 'actual-page'}>
+        <Link to="/" className={path === '/' && 'actual-page'}>
           Home
         </Link>
         <Link
           to="/favorites-list"
-          className={path === 'favorites-list' && 'actual-page'}
+          className={path === '/favorites-list' && 'actual-page'}
         >
           Favoritos
         </Link>
