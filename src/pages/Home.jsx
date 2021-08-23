@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { ImSpinner9 } from 'react-icons/im';
+import { BiErrorCircle } from 'react-icons/bi';
 import Header from '../components/Header';
-import { ContentWrapper } from './styles';
+import { ContentWrapper, MessageContainer } from './styles';
 import GamesList from '../components/GamesList';
 import Filters from '../components/Filters';
 import getGames from '../requests';
@@ -33,14 +35,24 @@ export default function Home() {
 
   const renderContent = () => {
     if (isLoading) {
-      return <h1>Carregando...</h1>;
+      return (
+        <MessageContainer>
+          <ImSpinner9 />
+          <br />
+          <h2>Buscando jogos</h2>
+        </MessageContainer>
+      );
     }
     if (errors) {
-      return <h1>Erro!!!</h1>;
+      return (
+        <MessageContainer>
+          <BiErrorCircle />
+          <br />
+          <h2>Ocorreu alguma falha na comunicação com o servidor</h2>
+        </MessageContainer>
+      );
     }
-    if (allGames) {
-      return <GamesList values={sortedGames} />;
-    }
+    return <GamesList values={sortedGames} />;
   };
 
   return (
