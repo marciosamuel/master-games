@@ -8,6 +8,7 @@ import Filters from '../components/Filters';
 import getGames from '../requests';
 
 export default function Home() {
+  document.title = 'Master Games - Página Inicial';
   const [isLoading, setIsLoading] = useState(true);
   const [allGames, setAllGames] = useState(null);
   const [errors, setErrors] = useState(null);

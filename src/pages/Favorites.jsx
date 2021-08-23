@@ -6,6 +6,7 @@ import { FavoriteContext } from '../hooks';
 import { ContentWrapper } from './styles';
 
 export default function Favorites() {
+  document.title = 'Master Games - Favoritos';
   const { favorites } = useContext(FavoriteContext);
   const [sortedGames, setSortedGames] = useState();
   const [filters, setFilters] = useState({});
