@@ -5,6 +5,10 @@ export const ContentWrapper = styled.main`
   min-height: calc(100vh - 51px);
   display: flex;
   padding: 1rem;
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap-reverse;
+  }
 `;
 
 export const MessageContainer = styled.div`
