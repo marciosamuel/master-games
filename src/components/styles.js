@@ -11,6 +11,7 @@ export const HeaderContainer = styled.header`
 
   h1 {
     background: linear-gradient(45deg, var(--cyan), var(--blue));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: Passero One, cursive;
@@ -94,6 +95,7 @@ export const ActionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
+  align-items: center;
 `;
 
 export const Input = styled.div`
@@ -210,7 +212,12 @@ export const GamesListContainer = styled.div`
   width: 100%;
 
   Select {
-    width: 300px;
+    width: 280px;
+    margin-left: 0.5rem;
+
+    @media screen and (max-width: 768px) {
+      margin: auto;
+    }
   }
 `;
 
@@ -224,8 +231,15 @@ export const GamesWrapper = styled.section`
 `;
 
 export const Card = styled.div`
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 300px;
   font-family: 'Roboto', sans-serif;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    flex-grow: 1;
+  }
 
   img {
     width: 100%;
@@ -244,9 +258,56 @@ export const Card = styled.div`
     color: var(--secondary-text);
   }
 
-  &:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
+  select {
+    width: 120px;
+    padding: 2px 10px;
+    border: 1px solid var(--secondary-text);
+    border-radius: 5px;
+    background: var(--background);
+    color: var(--secondary-text);
+    margin: 5px auto;
+  }
+
+  .rate {
+    margin: 5px auto;
+
+    img {
+      width: 25px;
+      height: 25px;
+      margin: 0 5px;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  .fav {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    border: none;
+    display: flex;
+    gap: 5px;
+    background: #31313180;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 1rem;
+    color: #dedede;
+
+    svg {
+      height: 1rem;
+      width: 1rem;
+      margin: auto;
+      color: salmon;
+    }
+
+    &:hover {
+      background: #313131;
+      transform: scale(1.05);
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
   }
 `;
