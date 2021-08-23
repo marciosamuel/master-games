@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import { ContentWrapper } from '../components/styles';
+import { ContentWrapper } from './styles';
 import GamesList from '../components/GamesList';
 import Filters from '../components/Filters';
 import getGames from '../requests';
