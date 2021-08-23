@@ -92,7 +92,7 @@ export default function Filters(props) {
     'mmorts',
   ];
 
-  const platforms = ['pc', 'browser', 'all'];
+  const platforms = ['pc', 'browser'];
 
   return (
     <ActionsWrapper>
