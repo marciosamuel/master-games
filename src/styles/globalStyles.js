@@ -43,8 +43,7 @@ export default createGlobalStyle`
     background-color: var(--background);
   }
 
-  p, button, input, div, select, li {
+  p, button, input, div, select, li, span, small {
     font-family: "Roboto", sans-serif;
-    font-size: 1rem;
   }
 `;
