@@ -10,9 +10,6 @@ const api = axios.create({
   },
 });
 
-export const getAll = () => api.get('/games');
-
-export const getByID = (id) =>
-  api.get('/game', {
-    id,
-  });
+export default function getGames(filters) {
+  return api.get(`/games`, { params: { ...filters } });
+}
