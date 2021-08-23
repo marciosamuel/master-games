@@ -259,13 +259,14 @@ export const Card = styled.div`
   }
 
   select {
-    width: 120px;
+    width: auto;
     padding: 2px 10px;
     border: 1px solid var(--secondary-text);
     border-radius: 5px;
     background: var(--background);
     color: var(--secondary-text);
     margin: 5px auto;
+    font-size: 1rem;
   }
 
   .rate {
@@ -293,7 +294,7 @@ export const Card = styled.div`
     background: #31313180;
     border-radius: 5px;
     padding: 0 5px;
-    font-size: 1rem;
+    font-size: 18px;
     color: #dedede;
 
     svg {
