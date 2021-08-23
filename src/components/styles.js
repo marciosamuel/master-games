@@ -1,186 +1,252 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
+export const HeaderContainer = styled.header`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  flex-basis: 320px;
-  padding: 1rem;
-  background-color: var(--foreground);
-  border-radius: 22px;
-  color: var(--secondary-text);
-  text-align: center;
-  border: 3px solid transparent;
-  transition: box-shadow 0.3s linear;
+  background: #313131;
+  padding: 1rem 1rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  h1 {
+    background: linear-gradient(45deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Passero One, cursive;
+    position: absolute;
+    left: 1rem;
+
+    &:not(:first-child) {
+      display: none;
+    }
+  }
 
   @media screen and (max-width: 768px) {
-    width: 200px;
-  }
+    h1 {
+      &:first-child {
+        display: none;
+      }
 
-  &:hover {
-    box-shadow: 0 0 2px 2px var(--secondary-text);
-    cursor: pointer;
-  }
-
-  .title {
-    color: var(--primary-text);
-    font-size: 1.5rem;
-    margin: 8px 0;
-  }
-
-  .info {
-    font-size: 1.2rem;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-    max-height: 300px;
-    margin: 0.5rem auto;
-    border-radius: 22px;
-  }
-
-  .rating {
-    margin: 0 auto;
-    width: 100%;
-
-    img {
-      width: 35px;
-      height: auto;
-      margin: 8px 5px;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.15);
+      &:not(:first-child) {
+        display: block;
       }
     }
   }
-
-  .clear-rate {
-    width: 100%;
-    text-align: center;
-
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
 `;
 
-export const Container = styled.div`
-  width: 95%;
-  padding: 1rem;
-  margin: 0 auto;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-export const Title = styled.h1`
-  color: var(--primary-text);
-  text-align: center;
-  font-family: 'Passero One', cursive;
-  font-size: 3rem;
-  margin: 1rem 0;
-`;
-
-export const Subtitle = styled.h2`
-  color: var(--secondary-text);
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-`;
-
-export const Line = styled.hr`
-  border: 1px solid var(--foreground);
-  width: 90%;
-  margin: 1rem auto;
-`;
-
-export const Input = styled.div`
-  background: linear-gradient(45deg, var(--cyan), var(--blue));
-  width: 320px;
-  height: 2.5rem;
-  padding: 2px;
-  border-radius: 20px;
-  position: relative;
-  margin: auto 0.5rem;
-
-  @media screen and (max-width: 768px) {
-    width: 200px;
-  }
-
-  input {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    border: none;
-    background-color: var(--background);
-    outline: none;
-    padding: 0 1.5rem;
-    color: var(--secondary-text);
-
-    &::placeholder {
-      color: var(--secondary-text);
-    }
-  }
-
-  @keyframes goUp {
-    from {
-      transform: translateY(25px) scale(0.5);
-      opacity: 0.5;
-    }
-    to {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-  }
-
-  .placeholder {
-    color: var(--secondary-text);
-    position: absolute;
-    height: 1rem;
-    font-size: 1rem;
-    font-weight: 400;
-    top: -1.5rem;
-    left: 1.5rem;
-    margin: unset;
-    animation-name: goUp;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-in-out;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  small {
-    color: var(--secondary-text);
-    margin-left: 1rem;
-  }
-`;
-
-export const Button = styled.button`
-  width: ${(props) => (props.size === 'small' ? '100px' : '200px')};
-  height: 2.5rem;
-  margin: auto 0.5rem;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(45deg, var(--cyan), var(--blue));
-  outline: none;
-  color: whitesmoke;
+export const Links = styled.div`
+  display: flex;
+  column-gap: 1.5rem;
   font-size: 1rem;
 
-  &:not(:disabled) {
-    cursor: pointer;
+  a {
+    color: #c8c8c8;
+    text-transform: uppercase;
+    font-family: 'DejaVu Sans', serif;
+    text-decoration: none;
+
+    &:hover {
+      color: #f2f2f2;
+    }
   }
 
-  &:disabled {
-    background: var(--foreground);
-    color: var(--secondary-text);
+  .actual-page {
+    color: #f2f2f2;
+  }
+
+  @media screen and (max-width: 768px) {
+    column-gap: 1rem;
+    font-size: 14px;
+  }
+`;
+
+export const ToggleTheme = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 100%;
+  position: absolute;
+  right: 1rem;
+
+  &.light-icon {
+    color: var(--yellow);
+  }
+
+  &.dark-icon {
+    color: var(--blue);
+  }
+
+  svg {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    border: 1px solid #666;
   }
 
   &:active {
     transform: scale(0.95);
     transition: transform 0.2s linear;
+  }
+`;
+
+export const ActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+`;
+
+export const Input = styled.div`
+  background: ${(props) =>
+    props.$isFocus
+      ? 'linear-gradient(45deg, var(--cyan), var(--blue))'
+      : 'var(--foreground)'};
+  width: 280px;
+  height: 2.5rem;
+  padding: 2px;
+  border-radius: 5px;
+  position: relative;
+  margin: 0.5rem;
+  transition: background 0.2s linear;
+  display: flex;
+
+  svg {
+    height: 100%;
+    width: 50px;
+    padding: 0.5rem;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: var(--primary-text);
+    background: var(--foreground);
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    background-color: var(--foreground);
+    outline: none;
+    padding-right: 1.5rem;
+    color: var(--primary-text);
+
+    &::placeholder {
+      color: var(--secondary-text);
+    }
+  }
+`;
+
+export const FiltersContainer = styled.div`
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  color: var(--secondary-text);
+  font-family: 'Roboto', serif;
+
+  h3 {
+    margin: 0.5rem 0 1rem;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--foreground);
+    }
+  }
+`;
+
+export const Select = styled.div`
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+
+  select {
+    height: 100%;
+    width: 100%;
+    margin: auto 0;
+    padding: 0 1rem;
+    border: 2px solid var(--secondary-text);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--background);
+    color: var(--secondary-text);
+
+    &:focus {
+      border-image: linear-gradient(45deg, var(--cyan), var(--blue)) 1;
+    }
+
+    option {
+      color: var(--secondary-text);
+    }
+  }
+
+  span {
+    margin: 0 0.5rem;
+
+    svg {
+      width: 30px;
+      height: 30px;
+      color: var(--secondary-text);
+
+      &:hover {
+        color: orangered;
+        transition: 0.2s;
+      }
+    }
+  }
+`;
+
+export const GamesListContainer = styled.div`
+  width: 100%;
+
+  Select {
+    width: 300px;
+  }
+`;
+
+export const GamesWrapper = styled.section`
+  width: auto;
+  display: flex;
+  min-height: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: auto;
+`;
+
+export const Card = styled.div`
+  width: 300px;
+  font-family: 'Roboto', sans-serif;
+
+  img {
+    width: 100%;
+    border-radius: 5px;
+    margin: 1rem 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--primary-text);
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--secondary-text);
+  }
+
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
   }
 `;
