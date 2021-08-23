@@ -1,13 +1,13 @@
 export const darkTheme = {
-  primaryText: '#f5f5f5',
-  secondaryText: '#dedede',
-  background: '#3d3d3d',
-  foreground: '#585858',
+  primaryText: '#f2f2f2',
+  secondaryText: '#c8c8c8',
+  background: '#212121',
+  foreground: '#313131',
 };
 
 export const lightTheme = {
-  primaryText: '#3d3d3d',
-  secondaryText: '#585858',
-  background: '#f5f5f5',
-  foreground: '#dedede',
+  primaryText: '#212121',
+  secondaryText: '#313131',
+  background: '#f2f2f2',
+  foreground: '#c8c8c8',
 };
