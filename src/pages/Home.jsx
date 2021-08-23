@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <>
-      <Header path="home" />
+      <Header />
       <ContentWrapper>
         {renderContent()}
         <Filters
