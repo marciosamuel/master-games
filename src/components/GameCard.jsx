@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useMemo } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { FavoriteContext } from '../hooks';
 import { Card } from './styles';
 import FilledStar from '../assets/FilledStar.svg';
@@ -10,12 +10,22 @@ import EmptyStar from '../assets/EmptyStar.svg';
 
 export default function GameCard(props) {
   const { path } = useRouteMatch();
-  const { id, title, platform, genre, thumbnail, tag, rate } = props;
+  const {
+    id,
+    title,
+    platform,
+    genre,
+    thumbnail,
+    tag,
+    rate,
+    release_date: releaseDate,
+  } = props;
   const { favorites, setFavorites } = useContext(FavoriteContext);
+  const history = useHistory();
 
   const isFavorite = useMemo(() => {
     if (favorites) {
-      return !!favorites.find((fav) => fav.id === id);
+      return favorites.find((fav) => fav.id === id);
     }
     return false;
   }, [favorites]);
@@ -42,12 +52,14 @@ export default function GameCard(props) {
         thumbnail,
         tag: 'Adicionar tag',
         rate: 0,
+        release_date: releaseDate,
       },
     ]);
   };
 
   const handleRemoveFav = () => {
     setFavorites(favorites.filter((fav) => fav.id !== id));
+    history.go(0);
   };
 
   const handleSetRate = (index) => {

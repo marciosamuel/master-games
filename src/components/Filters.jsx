@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActionsWrapper, FiltersContainer } from './styles';
 import CustomInput from './CustomInput';
 import CustomSelect from './CustomSelect';
@@ -9,18 +9,15 @@ export default function Filters(props) {
   const [category, setCategory] = useState('nao-selecionado');
   const [platform, setPlatform] = useState('nao-selecionado');
 
-  const matchedGames = useMemo(() => {
+  useEffect(() => {
     if (searchValue && values) {
-      return values.filter((game) =>
+      const list = values.filter((game) =>
         game.title.toLowerCase().includes(searchValue.toLowerCase())
       );
+      handleChange(list);
     }
-    return values;
+    handleChange(values);
   }, [values, searchValue]);
-
-  useEffect(() => {
-    handleChange(matchedGames);
-  }, [matchedGames]);
 
   useEffect(() => {
     if (category !== 'nao-selecionado') {
