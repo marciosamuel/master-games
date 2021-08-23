@@ -30,3 +30,8 @@ export const ThemeContext = createContext({
   theme: 'light',
   setTheme: () => {},
 });
+
+export const FavoriteContext = createContext({
+  favorites: [],
+  setFavorites: () => {},
+});
