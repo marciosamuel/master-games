@@ -78,7 +78,7 @@ export default function GameCard(props) {
 
   return (
     <Card>
-      <img src={thumbnail} alt="Capa do jogo" />
+      <img src={thumbnail} alt="Capa do jogo" loading="lazy"/>
       <h3 className="title">{title}</h3>
       <p className="info">
         {platform} - {genre}
