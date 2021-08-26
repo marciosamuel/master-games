@@ -15,8 +15,9 @@ export default function Filters(props) {
         game.title.toLowerCase().includes(searchValue.toLowerCase())
       );
       handleChange(list);
+    } else {
+      handleChange(values);
     }
-    handleChange(values);
   }, [values, searchValue]);
 
   useEffect(() => {
