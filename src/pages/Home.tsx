@@ -4,16 +4,17 @@ import { BiErrorCircle } from 'react-icons/bi';
 import Header from '../components/Header';
 import { ContentWrapper, MessageContainer } from './styles';
 import GamesList from '../components/GamesList';
-import Filters from '../components/Filters';
+import Filters, { FiltersProps } from '../components/Filters';
 import getGames from '../requests';
+import { GameProps } from '../components/GameCard';
 
-export default function Home() {
+const Home: React.FC = () => {
   document.title = 'Master Games - Página Inicial';
-  const [isLoading, setIsLoading] = useState(true);
-  const [allGames, setAllGames] = useState(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [allGames, setAllGames] = useState<GameProps[]>([]);
   const [errors, setErrors] = useState(null);
-  const [sortedGames, setSortedGames] = useState(null);
-  const [filters, setFilters] = useState({});
+  const [sortedGames, setSortedGames] = useState<GameProps[]>([]);
+  const [filters, setFilters] = useState<FiltersProps>({});
 
   const getAllGames = async () => {
     setIsLoading(true);
@@ -69,4 +70,6 @@ export default function Home() {
       </ContentWrapper>
     </>
   );
-}
+};
+
+export default Home;

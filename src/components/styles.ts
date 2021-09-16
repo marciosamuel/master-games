@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface InputProps {
+  $isFocus: boolean;
+}
+
 export const HeaderContainer = styled.header`
   width: 100%;
   display: flex;
@@ -98,7 +102,7 @@ export const ActionsWrapper = styled.div`
   align-items: center;
 `;
 
-export const Input = styled.div`
+export const Input = styled.div<InputProps>`
   background: ${(props) =>
     props.$isFocus
       ? 'linear-gradient(45deg, var(--cyan), var(--blue))'
