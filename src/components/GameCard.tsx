@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useMemo } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useHistory, useRouteMatch } from 'react-router-dom';
@@ -8,7 +6,21 @@ import { Card } from './styles';
 import FilledStar from '../assets/FilledStar.svg';
 import EmptyStar from '../assets/EmptyStar.svg';
 
-export default function GameCard(props) {
+export interface GameProps {
+  id: string;
+  title: string;
+  platform: string;
+  genre: string;
+  thumbnail: string;
+  release_date: Date;
+}
+
+export interface FavoriteGameProps extends GameProps {
+  tag?: string;
+  rate?: number;
+}
+
+const GameCard: React.FC<FavoriteGameProps> = (props) => {
   const { path } = useRouteMatch();
   const {
     id,
@@ -30,7 +42,7 @@ export default function GameCard(props) {
     return false;
   }, [favorites]);
 
-  const handleUpdateTag = (event) => {
+  const handleUpdateTag = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFavorites(
       favorites.map((fav) => {
         if (fav.id === id) {
@@ -62,7 +74,7 @@ export default function GameCard(props) {
     history.go(0);
   };
 
-  const handleSetRate = (index) => {
+  const handleSetRate = (index: number) => {
     setFavorites(
       favorites.map((fav) => {
         if (fav.id === id) {
@@ -78,7 +90,7 @@ export default function GameCard(props) {
 
   return (
     <Card>
-      <img src={thumbnail} alt="Capa do jogo" loading="lazy"/>
+      <img src={thumbnail} alt="Capa do jogo" loading="lazy" />
       <h3 className="title">{title}</h3>
       <p className="info">
         {platform} - {genre}
@@ -98,7 +110,7 @@ export default function GameCard(props) {
             {[1, 2, 3, 4, 5].map((item) => (
               <img
                 alt={`estrela ${item}`}
-                src={item <= rate ? FilledStar : EmptyStar}
+                src={rate && item <= rate ? FilledStar : EmptyStar}
                 key={item}
                 onClick={() => handleSetRate(item)}
               />
@@ -115,4 +127,6 @@ export default function GameCard(props) {
       )}
     </Card>
   );
-}
+};
+
+export default GameCard;

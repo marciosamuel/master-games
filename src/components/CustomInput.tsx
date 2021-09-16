@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { BiSearch } from 'react-icons/all';
 import { Input } from './styles';
 
-function CustomInput(props) {
+interface CustomInputProps {
+  value: string;
+  label: string;
+  handleChange: (value: string) => void;
+}
+
+const CustomInput: React.FC<CustomInputProps> = (props) => {
   const { handleChange, value, label } = props;
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
     <Input $isFocus={isFocus}>
@@ -18,6 +24,6 @@ function CustomInput(props) {
       />
     </Input>
   );
-}
+};
 
 export default CustomInput;

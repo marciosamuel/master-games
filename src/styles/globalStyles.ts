@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
+import { ThemeProps } from './themes';
 
-export default createGlobalStyle`
+interface GlobalStyleProps {
+  theme: ThemeProps;
+}
+
+export default createGlobalStyle<GlobalStyleProps>`
   :root {
     --primary-text: ${(props) => props.theme.primaryText};
     --secondary-text: ${(props) => props.theme.secondaryText};

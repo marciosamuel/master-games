@@ -2,8 +2,16 @@ import React from 'react';
 import { BiXCircle } from 'react-icons/all';
 import { Select } from './styles';
 
-export default function CustomSelect(props) {
-  const { label, options, value, handleChange, noClear } = props;
+interface CustomSelectProps {
+  label?: string;
+  options: string[];
+  value: string;
+  handleChange: (value: string) => void;
+  isPersistent?: boolean;
+}
+
+const CustomSelect: React.FC<CustomSelectProps> = (props) => {
+  const { label, options, value, handleChange, isPersistent } = props;
   return (
     <Select>
       <select
@@ -18,11 +26,13 @@ export default function CustomSelect(props) {
         {options &&
           options.map((option) => <option value={option}>{option}</option>)}
       </select>
-      {value !== 'nao-selecionado' && !noClear && (
+      {value !== 'nao-selecionado' && !isPersistent && (
         <span onClick={() => handleChange('nao-selecionado')}>
           <BiXCircle />
         </span>
       )}
     </Select>
   );
-}
+};
+
+export default CustomSelect;

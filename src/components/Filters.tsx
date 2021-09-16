@@ -2,8 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { ActionsWrapper, FiltersContainer } from './styles';
 import CustomInput from './CustomInput';
 import CustomSelect from './CustomSelect';
+import { GameProps } from './GameCard';
 
-export default function Filters(props) {
+export interface FiltersProps {
+  category?: string;
+  platform?: string;
+}
+
+interface FiltersComponentProps {
+  values: GameProps[];
+  handleChange: (value: GameProps[]) => void;
+  setFilters: (value: FiltersProps) => void;
+}
+
+const Filters: React.FC<FiltersComponentProps> = (props) => {
   const { values, handleChange, setFilters } = props;
   const [searchValue, setSearchValue] = useState('');
   const [category, setCategory] = useState('nao-selecionado');
@@ -116,4 +128,6 @@ export default function Filters(props) {
       </FiltersContainer>
     </ActionsWrapper>
   );
-}
+};
+
+export default Filters;

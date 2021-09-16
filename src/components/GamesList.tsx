@@ -1,12 +1,16 @@
 import React, { useMemo, useState } from 'react';
 import { GamesListContainer, GamesWrapper } from './styles';
-import GameCard from './GameCard';
+import GameCard, { FavoriteGameProps, GameProps } from './GameCard';
 import CustomSelect from './CustomSelect';
 import { MessageContainer } from '../pages/styles';
 
-export default function GamesList(props) {
+interface GamesListProps {
+  values: GameProps[] | FavoriteGameProps[];
+}
+
+const GamesList: React.FC<GamesListProps> = (props) => {
   const { values: allGames } = props;
-  const [sortOption, setSortOption] = useState('Alfabética (A-Z)');
+  const [sortOption, setSortOption] = useState<string>('Alfabética (A-Z)');
 
   const sortedGames = useMemo(() => {
     if (allGames) {
@@ -52,7 +56,7 @@ export default function GamesList(props) {
           'Lançamento (Novos)',
           'Lançamento (Antigos)',
         ]}
-        noClear
+        isPersistent
       />
       <GamesWrapper>
         {sortedGames.map((game) => (
@@ -61,4 +65,6 @@ export default function GamesList(props) {
       </GamesWrapper>
     </GamesListContainer>
   );
-}
+};
+
+export default GamesList;

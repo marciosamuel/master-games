@@ -4,7 +4,7 @@ import { BsMoon, BsSun } from 'react-icons/all';
 import { HeaderContainer, Links, ToggleTheme } from './styles';
 import { ThemeContext } from '../hooks';
 
-export default function Header() {
+const Header: React.FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const { path } = useRouteMatch();
   return (
@@ -12,12 +12,12 @@ export default function Header() {
       <h1>Master Games</h1>
       <h1>MG</h1>
       <Links>
-        <Link to="/" className={path === '/' && 'actual-page'}>
+        <Link to="/" className={path === '/' ? 'actual-page' : ''}>
           Home
         </Link>
         <Link
           to="/favorites-list"
-          className={path === '/favorites-list' && 'actual-page'}
+          className={path === '/favorites-list' ? 'actual-page' : ''}
         >
           Favoritos
         </Link>
@@ -34,4 +34,6 @@ export default function Header() {
       )}
     </HeaderContainer>
   );
-}
+};
+
+export default Header;
